@@ -13,7 +13,7 @@ responses = []
 
 @app.route('/')
 def display_home_page():
-	'''docstring'''
+	'''displays start page for survey, including survey title, instructions, and start button'''
 	title = satisfaction_survey.title
 	instructions = satisfaction_survey.instructions
 
@@ -22,7 +22,7 @@ def display_home_page():
 
 @app.route('/questions/<q_id>', methods=["GET", "POST"])
 def display_questions(q_id):
-	'''docstring'''
+	'''displays each question in the survey with all given options for user to select and submit'''
 	question_id = int(q_id)
 	if len(responses) == len(satisfaction_survey.questions):
 			return redirect('/thanks')
@@ -39,7 +39,7 @@ def display_questions(q_id):
 
 @app.route('/answer', methods=["GET", "POST"])
 def collect_answers():
-	'''docstring'''
+	'''gets answers from users for survey questions and stores the answers in list of responses'''
 	answer = request.form["choices"]
 	responses.append(answer)
 	q_id = request.form["q_id"]
@@ -52,7 +52,7 @@ def collect_answers():
 
 @app.route('/thanks')
 def display_thanks():
-	'''docstring'''
+	'''displays a thank you message to the user as well as all of the questions they answered and how they answered them'''
 	lst_of_qs = []
 	for i in range(len(satisfaction_survey.questions)):
 		lst_of_qs.append(satisfaction_survey.questions[i].question)
