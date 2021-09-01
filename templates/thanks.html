@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block title %} Survey Thank You Page {% endblock %}
+
+{% block content %}
+<h4>Thank you for completing the survey!</h4>
+<div class="answers">
+    <ul>
+    {% for (q, a) in response_dict %}
+        <li>{{q}}: {{a}}</li>
+    {% endfor %}
+    </ul>
+</div>
+{% endblock %}
